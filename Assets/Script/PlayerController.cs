@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class PlayerController : MonoBehaviour {
 
@@ -115,11 +116,11 @@ public class PlayerController : MonoBehaviour {
         // 슈퍼모드
         if(other.tag == "super")
         {
-            Debug.Log("super모드로 변경");
+            director.GetComponent<GameDirector>().Super();
+
             GameObject super = GameObject.Find(other.name);
             Destroy(super);
             
-            director.GetComponent<GameDirector>().Super();
         }
     }
 
