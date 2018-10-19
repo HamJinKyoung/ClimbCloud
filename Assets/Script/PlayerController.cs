@@ -23,12 +23,13 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
         // r버튼 누르면 재시작
-        if(Input.GetKeyDown(KeyCode.R)) {
-            SceneManager.LoadScene("GameScene");
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("Level1");
         }
 
         // 점프
-        if(Input.GetKeyDown(KeyCode.Space) && this.rigid2D.velocity.y==0)
+        if (Input.GetKeyDown(KeyCode.Space) && this.rigid2D.velocity.y==0)
         {
             this.animator.SetTrigger("JumpTrigger");
             this.rigid2D.AddForce(transform.up * this.jumpForce);
@@ -74,23 +75,27 @@ public class PlayerController : MonoBehaviour {
    
     
     // Collision 충돌 판정
-    void OnCollisionExit2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag=="cloud1" && 
-            (other.transform.position.x+0.3f>this.transform.position.x
-            || other.transform.position.x-0.3f<this.transform.position.x))
-        {
-            Destroy(other.gameObject);
-        }
-
-        if(other.gameObject.tag=="cloud2" && 
+        // 번개 구름
+        if (other.gameObject.tag == "cloud2" &&
             (other.transform.position.x + 0.3f > this.transform.position.x
             || other.transform.position.x - 0.3f < this.transform.position.x)
             )
         {
             director.GetComponent<GameDirector>().DecreaseHp();
         }
-            
+    }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        // 점선 구름
+        if (other.gameObject.tag=="cloud1" && other.transform.position.y<this.transform.position.y &&
+            (other.transform.position.x+0.3f>this.transform.position.x
+            || other.transform.position.x-0.3f<this.transform.position.x))
+        {
+            Destroy(other.gameObject);
+        }
     }
   
     // Trigger 충돌 판정
@@ -100,17 +105,7 @@ public class PlayerController : MonoBehaviour {
         // 깃발에 도착했을 경우
         if (other.tag == "Finish") // if(other.gameObject.equals(flag))
         {
-            Debug.Log("골");
             SceneManager.LoadScene("ClearScene");
-        }
-
-        // 하트를 먹었을 경우
-        if (other.tag == "heart")
-        {
-            director.GetComponent<GameDirector>().IncreaseHp();
-
-            GameObject heart = GameObject.Find(other.name);
-            Destroy(heart);
         }
 
         // 슈퍼모드

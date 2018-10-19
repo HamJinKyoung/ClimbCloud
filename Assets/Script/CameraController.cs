@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        this.player = GameObject.Find("cat");
+        this.player = GameObject.Find("catPrefab");
 	
 	}
 	

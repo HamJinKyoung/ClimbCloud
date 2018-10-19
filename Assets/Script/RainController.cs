@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class RainController : MonoBehaviour {
 
-    GameObject player;
-
 	// Use this for initialization
 	void Start () {
-        this.player = GameObject.Find("cat");
 	
 	}
 	
@@ -22,25 +20,23 @@ public class RainController : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        // 충돌 판정
-        Vector2 p1 = transform.position;    // 빗방울의 중심 좌표
-        Vector2 p2 = this.player.transform.position;    // 플레이어의 중심 좌표
-        Vector2 dir = p1 - p2;
-        float d = dir.magnitude;
-        float r1 = 0.05f;    // 빗방울 반경
-        float r2 = 0.5f;    // 플레이어 반경
+    }
 
-        if(d < r1 + r2)
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
         {
+            GetComponent<AudioSource>().Play();
+
             // 충돌하면 소멸시킨다.
-            Destroy(gameObject);
+            Destroy(gameObject, 0.1f);
 
             // 감독 스크립트에 플레이어와 빗방울이 충돌햇다고 전달한다.
             GameObject director = GameObject.Find("GameDirector");
             director.GetComponent<GameDirector>().DecreaseHp();
 
+            
+
         }
-
-
     }
 }

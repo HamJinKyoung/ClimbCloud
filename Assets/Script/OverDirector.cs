@@ -13,7 +13,7 @@ public class OverDirector : MonoBehaviour {
 	void Update () {
         if (Input.GetMouseButton(0))
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("Level1");
         }
     }
 }
