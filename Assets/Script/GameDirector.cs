@@ -28,6 +28,12 @@ public class GameDirector : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // r버튼 누르면 재시작
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("Level1");
+        }
+
         // hpGage가 다 닳았을 경우 게임오버
         if (this.hpGage.GetComponent<Image>().fillAmount==0)
         {

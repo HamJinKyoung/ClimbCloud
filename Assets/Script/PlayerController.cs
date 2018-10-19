@@ -22,12 +22,6 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        // r버튼 누르면 재시작
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene("Level1");
-        }
-
         // 점프
         if (Input.GetKeyDown(KeyCode.Space) && this.rigid2D.velocity.y==0)
         {
@@ -89,7 +83,7 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionExit2D(Collision2D other)
     {
-        // 점선 구름
+        // 좌우 이동 구름
         if (other.gameObject.tag=="cloud1" && other.transform.position.y<this.transform.position.y &&
             (other.transform.position.x+0.3f>this.transform.position.x
             || other.transform.position.x-0.3f<this.transform.position.x))

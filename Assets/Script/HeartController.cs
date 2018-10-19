@@ -11,6 +11,6 @@ public class HeartController : MonoBehaviour {
         GameObject director = GameObject.Find("GameDirector");
         director.GetComponent<GameDirector>().IncreaseHp();
 
-        Destroy(gameObject, 0.1f);
+        Destroy(gameObject, 0.2f);
     }
 }

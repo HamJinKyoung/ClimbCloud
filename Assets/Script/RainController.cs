@@ -28,15 +28,13 @@ public class RainController : MonoBehaviour {
         {
             GetComponent<AudioSource>().Play();
 
-            // 충돌하면 소멸시킨다.
-            Destroy(gameObject, 0.1f);
-
             // 감독 스크립트에 플레이어와 빗방울이 충돌햇다고 전달한다.
             GameObject director = GameObject.Find("GameDirector");
             director.GetComponent<GameDirector>().DecreaseHp();
 
+            // 충돌하면 소멸시킨다.
+            Destroy(gameObject, 0.1f);
             
-
         }
     }
 }

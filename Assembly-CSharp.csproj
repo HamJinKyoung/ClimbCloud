@@ -46,14 +46,20 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\CameraController.cs" />
-     <Compile Include="Assets\Script\ClearDirector.cs" />
      <Compile Include="Assets\Script\Cloud3Controller.cs" />
      <Compile Include="Assets\Script\Flag1.cs" />
      <Compile Include="Assets\Script\GameDirector.cs" />
      <Compile Include="Assets\Script\HeartController.cs" />
+     <Compile Include="Assets\Script\Level1\Lv1_ClearDirector.cs" />
+     <Compile Include="Assets\Script\Level1\Lv1_FlagController.cs" />
+     <Compile Include="Assets\Script\Level1\Lv1_OverDirector.cs" />
+     <Compile Include="Assets\Script\Level1\Lv1_Restart.cs" />
+     <Compile Include="Assets\Script\Level2\Lv2_ClearDirector.cs" />
+     <Compile Include="Assets\Script\Level2\Lv2_Flag.cs" />
+     <Compile Include="Assets\Script\Level2\Lv2_OverDirector.cs" />
+     <Compile Include="Assets\Script\Level2\Lv2_Restart.cs" />
      <Compile Include="Assets\Script\Monster1Controller.cs" />
      <Compile Include="Assets\Script\Monster2Controller.cs" />
-     <Compile Include="Assets\Script\OverDirector.cs" />
      <Compile Include="Assets\Script\PlayerController.cs" />
      <Compile Include="Assets\Script\RainController.cs" />
      <Compile Include="Assets\Script\RainGenerator.cs" />
