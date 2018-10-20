@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        /*
         // 점프
         if (Input.GetKeyDown(KeyCode.Space) && this.rigid2D.velocity.y==0)
         {
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
             this.rigid2D.AddForce(transform.up * this.jumpForce);
             GetComponent<AudioSource>().Play();
         }
-
+        */
         // 좌우 이동
         int key = 0;
         if (Input.GetKey(KeyCode.RightArrow)) key = 1;
@@ -83,10 +83,10 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionExit2D(Collision2D other)
     {
-        // 좌우 이동 구름
+        // 밟으면 사라지는 구름
         if (other.gameObject.tag=="cloud1" && other.transform.position.y<this.transform.position.y &&
             (other.transform.position.x+0.3f>this.transform.position.x
-            || other.transform.position.x-0.3f<this.transform.position.x))
+            && other.transform.position.x-0.3f<this.transform.position.x))
         {
             Destroy(other.gameObject);
         }
