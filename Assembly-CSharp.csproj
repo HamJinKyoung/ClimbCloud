@@ -49,7 +49,7 @@
      <Compile Include="Assets\Script\Cloud3Controller.cs" />
      <Compile Include="Assets\Script\GameDirector.cs" />
      <Compile Include="Assets\Script\HeartController.cs" />
-     <Compile Include="Assets\Script\JumpGage.cs" />
+     <Compile Include="Assets\Script\JumpController.cs" />
      <Compile Include="Assets\Script\Level1\Lv1_ClearDirector.cs" />
      <Compile Include="Assets\Script\Level1\Lv1_FlagController.cs" />
      <Compile Include="Assets\Script\Level1\Lv1_OverDirector.cs" />
