@@ -6,6 +6,7 @@ public class Lv1_FlagController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
     {
-        SceneManager.LoadScene("Lv1_Clear");
+        if (other.tag=="Player")
+            SceneManager.LoadScene("Lv1_Clear");
     }
 }

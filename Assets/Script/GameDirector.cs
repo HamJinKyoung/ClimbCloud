@@ -10,9 +10,6 @@ public class GameDirector : MonoBehaviour {
     GameObject superGage;
     GameObject superImage;
     bool superMode;
-    public AudioSource audiosource;
-    public AudioClip playBgm;
-    public AudioClip superBgm;
 
 	// Use this for initialization
 	void Start () {
@@ -22,18 +19,11 @@ public class GameDirector : MonoBehaviour {
         this.superImage = GameObject.Find("superImage");
         superGage.GetComponent<Image>().enabled = false;
         superImage.GetComponent<Image>().enabled = false;
-        audiosource = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-
-        // r버튼 누르면 재시작
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene("Level1");
-        }
-
+        
         // hpGage가 다 닳았을 경우 게임오버
         if (this.hpGage.GetComponent<Image>().fillAmount==0)
         {
@@ -60,6 +50,10 @@ public class GameDirector : MonoBehaviour {
         if (!superMode)
             this.hpGage.GetComponent<Image>().fillAmount -= 0.1f;
     }
+    public void SlowDecreaseHp()
+    {
+        this.hpGage.GetComponent<Image>().fillAmount -= 0.005f;
+    }
 
     // Hp증가
     public void IncreaseHp()
@@ -77,9 +71,6 @@ public class GameDirector : MonoBehaviour {
         superImage.SetActive(true);
         superGage.SetActive(true);
         hpGage.SetActive(false);
-        audiosource.Stop();
-        audiosource.clip = superBgm;
-        audiosource.Play();
     }
 
     // 일반모드
@@ -92,8 +83,5 @@ public class GameDirector : MonoBehaviour {
         superImage.SetActive(false);
         superGage.SetActive(false);
         hpGage.SetActive(true);
-        audiosource.Stop();
-        audiosource.clip = playBgm;
-        audiosource.Play();
     }
 }

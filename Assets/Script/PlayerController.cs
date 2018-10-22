@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
     Rigidbody2D rigid2D;
     Animator animator;
     GameObject director;
-    float jumpForce = 680.0f;
+    float jumpForce = 600.0f;
     float walkForce = 30.3f;
     float maxWalkSpeed = 2.0f;
     public bool jumpMode;
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         
         // 점프
-        if(jumpMode)
+        if (jumpMode)
         {
             if (Input.GetKeyDown(KeyCode.Space) && this.rigid2D.velocity.y == 0)
             {
@@ -71,8 +71,7 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
-
-
+    
     // Collision 충돌 판정
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -80,48 +79,39 @@ public class PlayerController : MonoBehaviour {
         {
             jumpMode = true;
         }
+       
+    }
+    void OnCollisionStay2D(Collision2D other) {
         // 번개 구름
         if (other.gameObject.tag == "cloud2" &&
             (other.transform.position.x + 0.7f > this.transform.position.x
             && other.transform.position.x - 0.7f < this.transform.position.x)
             )
         {
-            director.GetComponent<GameDirector>().DecreaseHp();
+            director.GetComponent<GameDirector>().SlowDecreaseHp();
         }
-    }
-    void OnCollisionStay2D(Collision2D other) {
         // 별 구름(점프 게이지 효과)
-        if(other.gameObject.tag == "cloud4" && other.transform.position.y < this.transform.position.y &&
-            (other.transform.position.x + 1.4f > this.transform.position.x
-            && other.transform.position.x - 1.4f < this.transform.position.x))
+        if (other.gameObject.tag == "cloud4" && other.transform.position.y < this.transform.position.y &&
+            (other.transform.position.x + 1.5f > this.transform.position.x
+            && other.transform.position.x - 1.5f < this.transform.position.x))
         {
-            //if(Input.GetKeyDown(KeyCode.Space))
-                jumpMode = false;
+            jumpMode = false;
         }
     }
-    
     void OnCollisionExit2D(Collision2D other)
     {
         // 밟으면 사라지는 구름
-        if (other.gameObject.tag=="cloud1" && other.transform.position.y<this.transform.position.y &&
-            (other.transform.position.x+0.7f>this.transform.position.x
-            && other.transform.position.x-0.7f<this.transform.position.x))
+        if (other.gameObject.tag == "cloud1" && other.transform.position.y < this.transform.position.y &&
+            (other.transform.position.x+0.8f>this.transform.position.x
+            && other.transform.position.x-0.8f<this.transform.position.x))
         {
             Destroy(other.gameObject);
         }
-        
     }
   
     // Trigger 충돌 판정
     void OnTriggerEnter2D(Collider2D other)
     {
-        // GameObject flag = GameObject.Find("flag");
-        // 깃발에 도착했을 경우
-        if (other.tag == "Finish") // if(other.gameObject.equals(flag))
-        {
-            SceneManager.LoadScene("ClearScene");
-        }
-
         // 슈퍼모드
         if(other.tag == "super")
         {
@@ -129,7 +119,6 @@ public class PlayerController : MonoBehaviour {
 
             GameObject super = GameObject.Find(other.name);
             Destroy(super);
-            
         }
     }
 

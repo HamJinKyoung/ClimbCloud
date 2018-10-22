@@ -13,7 +13,7 @@ public class Lv2_ClearDirector : MonoBehaviour {
 	void Update () {
         if (Input.GetMouseButton(0))
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("ClearScene");
         }
 
     }
