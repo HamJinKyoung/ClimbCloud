@@ -4,7 +4,7 @@ using System.Collections;
 public class MonsterGenerator : MonoBehaviour {
 
     public GameObject monster1Prefab;
-    float span = 4.0f;
+    float span = 5.0f;
     float delta = 0;
 
     // Use this for initialization
